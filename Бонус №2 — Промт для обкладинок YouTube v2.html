@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Бонус №2 — Промт для обкладинок YouTube v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--ink:#111;--mute:#5b5560;--bord:#7a1233;--rose:#c2185b;--yel:#ffd21f;--soft:#faf3f6;--line:#eadde3;--grad:linear-gradient(120deg,#7a1233,#c2185b 55%,#ff8a5c);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-padding-top:70px;color-scheme:light}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif;font-size:17px;line-height:1.55}
+.yt{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:10px 18px}
+.logo{display:flex;align-items:center;gap:6px;font-family:Unbounded;font-weight:900;font-size:15px}
+.logo i{width:34px;height:24px;background:var(--grad);border-radius:7px;position:relative;display:block}
+.logo i:after{content:"";position:absolute;left:13px;top:6px;border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent}
+.search{flex:1;max-width:520px;margin:0 auto;border:1px solid #ccc;border-radius:99px;padding:7px 16px;color:var(--mute);font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wrap{max-width:900px;margin:0 auto;padding:30px 20px 80px}
+h1,h2{font-family:Unbounded,Manrope,sans-serif;line-height:1.1;margin:0}
+h1{font-size:clamp(28px,6.5vw,52px);font-weight:900}
+h2{font-size:clamp(20px,4vw,28px);margin-bottom:16px}
+.hl{background:var(--grad);color:#fff;padding:0 .18em;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.tag{display:inline-block;background:#111;color:var(--yel);font-weight:800;font-size:14px;padding:6px 14px;border-radius:99px;margin-bottom:18px}
+.lead{color:var(--mute);font-size:19px;max-width:60ch;margin:16px 0 24px}
+.thumb{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#7a1233,#c2185b 50%,#ffb36b);box-shadow:0 16px 40px rgba(122,18,51,.3)}
+.thumb .t{position:absolute;left:5%;top:12%;color:#fff;font-family:Unbounded;font-weight:900;font-size:clamp(22px,6.4vw,58px);line-height:1;text-shadow:0 4px 0 rgba(0,0,0,.3)}
+.thumb .t b{color:var(--yel)}
+.thumb .badge{position:absolute;right:4%;bottom:6%;background:#111;color:var(--yel);font-weight:800;font-size:clamp(11px,2vw,15px);padding:3px 8px;border-radius:5px}
+.thumb svg{position:absolute;left:0;right:0;bottom:0;width:100%;height:55%}
+.curve{stroke-dasharray:1200;stroke-dashoffset:1200;animation:draw 2.4s .4s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.curve{animation:none;stroke-dashoffset:0}}
+.cta{margin-top:22px;background:#111;color:var(--yel);font-weight:800;font-size:18px;padding:16px 26px;border-radius:12px;border:0;cursor:pointer;font-family:inherit}
+.cta:hover{background:var(--bord)}
+button:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
+section{margin-top:54px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.box{background:var(--soft);border:1px solid var(--line);border-left:5px solid var(--bord);border-radius:12px;padding:16px 18px}
+.box b{display:block;font-size:18px;margin-bottom:4px;color:var(--bord)}
+.box p{margin:0;color:var(--mute);font-size:16px}
+.steps{list-style:none;padding:0;margin:0;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.steps li:before{content:counter(s);flex:none;width:34px;height:34px;border-radius:50%;background:var(--yel);color:#111;font-weight:800;display:grid;place-items:center}
+.pb{border:2px solid #111;border-radius:14px;overflow:hidden}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 16px;background:var(--grad);color:#fff}
+.bar span{font-weight:800}
+.bar button{background:var(--yel);color:#111;font-weight:800;border:0;border-radius:8px;padding:10px 16px;cursor:pointer;font-family:inherit;font-size:15px}
+pre{margin:0;padding:18px 16px;white-space:pre-wrap;word-break:break-word;font-family:Manrope,system-ui,sans-serif;font-size:15px;line-height:1.6;max-height:560px;overflow:auto;background:#fff;color:#111}
+.note{color:var(--mute);font-size:15px;margin-top:12px}
+footer{margin-top:54px;color:var(--mute);font-size:15px;border-top:1px solid var(--line);padding-top:18px}
+</style>
+</head>
+<body>
+<div class="yt"><div class="logo"><i></i>Бонус</div><div class="search">промт для обкладинок YouTube</div></div>
+<div class="wrap">
+<span class="tag">Бонус №2 · версія 2</span>
+<h1>Обкладинка, на яку <span class="hl">клікають</span></h1>
+<p class="lead">Готовий промт для ШІ. Він спитає про твоє відео й видасть 3 концепції, текст і промт для картинки. Без «гарних картинок ні про що».</p>
+
+<div class="thumb" aria-hidden="true">
+  <div class="t">ТВОЄ ВІДЕО<br><b>БАЧАТЬ</b></div>
+  <div class="badge">12:34</div>
+  <svg viewBox="0 0 600 160" preserveAspectRatio="none"><path class="curve" d="M0 140 C80 135 120 120 170 100 S280 70 340 55 S480 25 600 8" fill="none" stroke="#ffd21f" stroke-width="7" stroke-linecap="round"/></svg>
+</div>
+<button class="cta" onclick="document.getElementById('prompt').scrollIntoView({behavior:'smooth'})">Забрати промт</button>
+
+<section>
+<h2>Що він робить</h2>
+<div class="grid">
+<div class="box"><b>4 питання, не 8</b><p>Тема, думка, фото, референс. Решту ШІ визначає сам.</p></div>
+<div class="box"><b>3 різні концепції</b><p>Можна протестувати, яка дасть більше кліків.</p></div>
+<div class="box"><b>Без кривої кирилиці</b><p>Картинка без тексту, напис додаєш у Canva.</p></div>
+<div class="box"><b>Твоє обличчя цілим</b><p>Правила, як зберегти впізнаваність.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Як користуватись</h2>
+<ol class="steps">
+<li><div><b>Скопіюй промт</b> кнопкою нижче.</div></li>
+<li><div><b>Встав у ChatGPT або Claude.</b> Для картинки підійде ChatGPT з генерацією зображень.</div></li>
+<li><div><b>Відповідай на питання.</b> Додай своє фото й приклад обкладинки, яка подобається.</div></li>
+<li><div><b>Додай напис у Canva</b> і перевір на екрані телефону.</div></li>
+</ol>
+</section>
+
+<section id="prompt">
+<h2>Твій промт</h2>
+<div class="pb">
+<div class="bar"><span>Промт для обкладинок YouTube v2</span><button id="cp" onclick="copyP()">Скопіювати</button></div>
+<pre id="p">ТВОЯ РОЛЬ
+Ти артдиректор і дизайнер YouTube-обкладинок, експерт з візуальної комунікації. Твоя задача — не гарна картинка, а обкладинка, яка за секунду пояснює тему відео й змушує зупинитись. Вона працює разом із назвою, а не дублює її.
+
+ПЕРЕД ПОЧАТКОМ
+Постав мені ці 4 питання й дочекайся відповідей. Не починай без них.
+1. Назва або тема відео?
+2. Головна думка: що глядач має зрозуміти чи відчути за 1–3 секунди?
+3. Чи є моє фото? Якщо так — я його завантажу. Якщо ні — яку людину чи образ створити?
+4. Чи є референс обкладинки, яка мені подобається? Якщо так — проаналізуй кольори, світло, композицію, контраст, емоцію, розташування людини й тексту.
+
+Усе інше визначай сама:
+— формат 16:9, 1920×1080 (квадрат 1:1 лише якщо я попрошу);
+— мету відео (увага, експертність, довіра, нові глядачі, продаж, анонс);
+— текст: запропонуй 3 варіанти по 3–5 слів, зрозумілі й цікаві, без клікбейту, який не відповідає відео.
+Один раз спитай мій бренд-стиль: кольори й шрифт. Далі тримай його в кожній обкладинці.
+
+ПРАВИЛА
+Композиція: 1 герой + 1 емоція + 1 ідея. Правило третин, чіткий передній і задній план, місце під текст, сильний контраст. Людина — головний фокус, не маленька фігурка.
+Mobile-first: обкладинка має читатись у розмірі 120 px. Один фокус, чисті форми. Заборонені дрібний текст, складна інфографіка, 10+ елементів.
+Безпечна зона: не став текст і важливі деталі у правий нижній кут, там буде таймінг відео.
+Емоція: обери одну (цікавість, здивування, впевненість, інсайт, трансформація, «було → стало»). Без гротеску заради кліку. Емоція відповідає змісту відео.
+Без клікбейту: не обіцяй того, чого немає у відео. Цікавість — через конкретну проблему, результат, контраст або питання.
+Особистий бренд: збережи впізнаваність, натуральні пропорції обличчя, реалістичну шкіру, природну міміку, ретуш без ефекту «пластику».
+Кольори: високий контраст, 1 головний акцент, 1–2 допоміжні, людина чітко відділена від фону. Без «салату з кольорів».
+Світло: premium studio photography, cinematic lighting, м'яке ключове світло, контрове, легкий glow, розмитий фон.
+Експертний контент: не схоже на дешеву рекламу. Передай експертність, зрозумілість, довіру, сучасність. Фінанси — гроші, цифри, графіки. YouTube — мікрофон, камера, екран. Особистий бренд — портрет, камера, соцмережі.
+Анонс ефіру: ЩО + КОЛИ + ХТО. Дата й час помітні, але не конкурують із заголовком.
+Не використовуй: багато шрифтів, випадкові стрілки, надлишок іконок, візуальний шум, stock-photo look, надмірну AI-глянцевість.
+
+ВАЖЛИВО ПРО ТЕКСТ І ОБЛИЧЧЯ
+— Генератори часто ламають українські літери. Тому генеруй фон і героя БЕЗ тексту, з порожнім місцем під напис. Я додам текст у Canva. Дай мені 3 варіанти напису й порадь шрифт та колір.
+— Генеруй окремі об'єкти в PNG на прозорому фоні, якщо це можливо.
+— Якщо ШІ спотворив моє обличчя: залиш оригінальне фото нижнім шаром у Photoshop чи Canva, а згенерований фон і тіло постав поверх.
+
+ПІСЛЯ МОЇХ ВІДПОВІДЕЙ
+Крок 1. Проаналізуй тему, глядача, його інтерес.
+Крок 2. Запропонуй 3 різні концепції обкладинки (різна емоція, образ або композиція), щоб я могла протестувати. Коротко, по 2 речення кожна.
+Крок 3. Порадь одну найсильнішу й поясни чому.
+Крок 4. Для обраної концепції дай відповідь у форматі нижче.
+
+ФОРМАТ ВІДПОВІДІ
+1. Ідея обкладинки: одне речення.
+2. Текст на обкладинці: 3 варіанти по 3–5 слів + який кращий.
+3. Емоція.
+4. Композиція: де людина, де текст, де головний акцент.
+5. Візуальний стиль: кольори, світло, фон, атмосфера.
+6. PROMPT: один цілісний детальний промт для генератора зображень АНГЛІЙСЬКОЮ мовою, без тексту в кадрі, з місцем під напис.
+7. NEGATIVE PROMPT англійською. Якщо генератор не має negative prompt, впиши ці заборони прямо в основний промт (у Midjourney це параметр --no).
+8. Фінальна перевірка: чи читається в 120 px, чи зрозуміло за секунду, чи є один фокус, чи відповідає назві, чи не обіцяє зайвого.
+
+Якщо можеш генерувати зображення, одразу створи обкладинку. Потім спитай: «Що змінити?» і допрацюй за моїми правками.
+
+ГОЛОВНЕ
+Обкладинка відповідає на питання глядача: «Чому я маю зупинитись саме на цьому відео?» За секунду зрозуміло: про що → для кого → чому цікаво → куди дивитись.</pre>
+</div>
+<p class="note">Промт довгий, це нормально. Копіюй повністю, одним шматком.</p>
+</section>
+
+<footer>Бонус до вебінару · Ольга Карцева · Фінанси, подкасти, YouTube</footer>
+</div>
+<script>
+function copyP(){
+  var t=document.getElementById('p').innerText,b=document.getElementById('cp');
+  function ok(){b.textContent='Скопійовано ✓';setTimeout(function(){b.textContent='Скопіювати'},2000)}
+  function fb(){var r=document.createRange();r.selectNodeContents(document.getElementById('p'));var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');ok()}catch(e){b.textContent='Виділено, натисни Ctrl+C'}}
+  try{navigator.clipboard.writeText(t).then(ok,fb)}catch(e){fb()}
+}
+</script>
+</body>
+</html>
